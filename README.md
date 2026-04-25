@@ -4,6 +4,8 @@ Willkommen zur modernen Typst-Vorlage für wissenschaftliche Arbeiten (Bachelor-
 
 Diese Vorlage wurde entwickelt, um die traditionelle LaTeX-Vorlage exakt nachzuahmen, während sie die Benutzerfreundlichkeit und Geschwindigkeit von **Typst** nutzt. Sie erfüllt die strikten Layout-Vorgaben bezüglich Seitenrändern (2,5cm oben, 2,0cm unten, 3,5cm links, 2,5cm rechts) und der Paginierung (Römisch/Arabisch/Römisch).
 
+---
+
 ## ✨ Features
 * **DHBW-Konform:** Automatische Einhaltung aller Formatvorgaben für Ränder, Zeilenabstände (1,5-zeilig) und Schriftgrößen (16pt/14pt/12pt).
 * **KI-Nutzungsnachweis:** Integrierte Vorlage für die Reflexion generativer KI gemäß den neuesten Fakultätsbeschlüssen (Option 1 & 2).
@@ -34,6 +36,9 @@ dhbw-typst-template/
 └── lib/                   <-- LAYOUT-ENGINE (Bitte nicht ändern)
     ├── titlepage.typ      (Design des Deckblatts)
     └── template.typ       (Die DHBW-Formatierungsregeln)
+```
+
+---
 
 ## 🚀 Schnellstart
 
@@ -85,26 +90,21 @@ Hier fütterst du das Template mit den Metadaten für das Deckblatt und die Erkl
 
 Passe diese Dateien einmalig an, um die Verzeichnisse vorzubereiten:
 
-    etc/abstract.typ: Ersetze den Platzhalter durch deine Kurzfassung.
-
-    etc/abbreviations.typ: Trage deine Abkürzungen in die Tabelle ein.
-
-    etc/declaration.typ: Der Text ist DHBW-konform. Der Parameter use_ai in der main.typ steuert automatisch den korrekten Wortlaut.
-
-    etc/bibliography.bib: Füge hier deine Quellen im BibLaTeX-Format ein.
+* etc/abstract.typ: Ersetze den Platzhalter durch deine Kurzfassung.
+* etc/abbreviations.typ: Trage deine Abkürzungen in die Tabelle ein.
+* etc/declaration.typ: Der Text ist DHBW-konform. Der Parameter use_ai in der main.typ steuert automatisch den korrekten Wortlaut.
+* etc/bibliography.bib: Füge hier deine Quellen im BibLaTeX-Format ein.
 
 ### 3. Der KI-Nachweis (etc/ai_usage.typ)
 
 Die Dokumentation deiner KI-Nutzung ist an der DHBW Pflicht:
 
-    Keine KI genutzt? Stelle in der main.typ einfach use_ai: false ein. Das Hilfsmittelverzeichnis wird dann automatisch ausgeblendet.
-
-    KI genutzt? Dokumentiere jede Nutzung in der ai_usage.typ in den jeweiligen Tabellen.
+* Keine KI genutzt? Stelle in der main.typ einfach use_ai: false ein. Das Hilfsmittelverzeichnis wird dann automatisch ausgeblendet.
+* KI genutzt? Dokumentiere jede Nutzung in der ai_usage.typ in den jeweiligen Tabellen.
 
 ### 4. Visuelle Identität (img/)
 
 Ersetze die Platzhalter-Bilder durch die offiziellen Logos:
 
-    img/DHBW_logo.png: Logo deines Standorts (muss diesen Dateinamen haben).
-
-    img/company_logo.png: Dein Firmenlogo (optional).
+* img/DHBW_logo.png: Logo deines Standorts (muss diesen Dateinamen haben).
+* img/company_logo.png: Dein Firmenlogo (optional).

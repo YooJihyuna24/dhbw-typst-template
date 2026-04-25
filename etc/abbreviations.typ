@@ -1,14 +1,10 @@
 // etc/abbreviations.typ
 
-= Abkürzungsverzeichnis <abkuerzungen>
-
-// Eine unsichtbare Tabelle für die saubere Ausrichtung
 #table(
-  columns: (auto, 1fr),
-  stroke: none, // Keine Rahmenlinien für dieses Verzeichnis
-  fill: none,   // Keine grauen Zeilen hier
-  row-gutter: 1em,
-  
-  [*BPMN*], [Business Process Model and Notation],
-  [*ERP*],  [Enterprise-Resource-Planning]
+  columns: (100pt, 1fr),
+  stroke: none,
+  fill: none,
+  row-gutter: 1.2em,
+  [*Abkürzung*], [*Bedeutung*],
+  [\<Abkürzung\>], [\<Bedeutung der Abkürzung oder Definition des Begriffs\>]
 )

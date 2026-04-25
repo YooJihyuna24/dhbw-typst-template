@@ -1,42 +1,33 @@
 // main.typ
-#import "lib/template.typ": dhbw-paper
+#import "lib/template.typ": dhbw_paper
 
-#show: dhbw-paper.with(
-  title: "Der Titel einer wissenschaftlichen Arbeit kann auch sehr lang werden...",
-  footer-title: "Kurztitel für die Fußzeile",
-  thesis-type: "1. Projektarbeit",
-  degree: "Bachelor of Science (B. Sc.)",
-  submission-date: datetime(year: 2020, month: 8, day: 31),
-  course-of-studies: "Wirtschaftsinformatik",
-  course: "WWI19BX",
-  author: "Max Mustermann",
+#show: dhbw_paper.with(
+  title: "<Titel der Arbeit>",
+  thesis_type: "<Typ der Arbeit>",
+  degree: "<Akademischer Grad>",
+  faculty: "<Fakultät>",
+  submission_date: "<Abgabedatum>",
+  course_of_studies: "<Studiengang>",
+  course: "<Kursbezeichnung>",
+  author: "<Vorname Nachname>",
   company: (
-    name: "Musterfrau AG",
-    location: "Karlsruhe",
-    advisor: "Leonie Musterfrau",
-    address: "Hauptstraße 1 \n 76133 Karlsruhe \n Deutschland",
-    phone: "0721 1234567",
-    email: "info@musterfrau-ag.de",
-    logo: "img/company_logo.pdf"
+    name: "<Unternehmen>",
+    location: "<Standort>",
+    advisor: "<BetreuerIn Unternehmen>",
   ),
-  university-advisor: "Prof. Dr. Tina Mustermann",
-  declaration-location: "Karlsruhe",
-  has-blocking-notice: true, //Sperrvermerk
-  is-seminar-paper: false
+  university_advisor: "<Wissenschaftliche/r BetreuerIn>",
+  declaration_location: "<Ort>",
+  declaration_date: "<Datum>",
+  has_blocking_notice: true,
+  
+  abstract_src: include "etc/abstract.typ",
+  abbreviations_src: include "etc/abbreviations.typ",
+  bibliography_src: {
+    heading(level: 1)[Quellenverzeichnis]
+    bibliography("etc/bibliography.bib", title: none, style: "etc/dhbw_style.csl")
+  },
+  appendix_src: include "etc/appendix.typ",
+  ai_usage_src: include "etc/ai_usage.typ",
 )
 
-// --- VORSPANN ---
-#include "etc/abstract.typ"
-#include "etc/abbreviations.typ"
-
-// --- HAUPTTEIL ---
 #include "chapters/01_einleitung.typ"
-#include "chapters/02_grundlagen.typ"
-// #include "chapters/03_hauptteil.typ"
-// #include "chapters/04_fazit.typ"
-
-// --- LITERATURVERZEICHNIS ---
-#bibliography("etc/bibliography.bib", style: "etc/dhbw_style.csl")
-
-// --- ANHANG ---
-#include "etc/appendix.typ"

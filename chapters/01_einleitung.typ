@@ -1,4 +1,5 @@
 // chapters/01_einleitung.typ
+#import "../lib/template.typ": epigraph
 
 = Einleitung
 
@@ -8,7 +9,7 @@ Ein zum Thema passendes Zitat ist fast immer eine gute Einleitung für die Arbei
 "Das ist ein direktes Zitat aus dem Internet". #footnote[@OMG2018[S. 3]]
 Es gibt viele schlechte Quellen. #footnote[Vgl. @schlechteQuelle2[S. 1-3]]
 
-== Motivation
+== Motivation <motivation>
 Abbildungen und Tabellen sind natürlich auch möglich.
 
 #figure(
@@ -44,4 +45,4 @@ Nummerierte Aufzählungen:
 + Punkt 1
 + Punkt 2
 
-Fußnoten sind besonders praktisch für Verweise auf andere Abschnitte der Arbeit. #footnote[Siehe Abschnitt @motivation] Mit dem @-Symbol lassen sich Labels referenzieren. Das funktioniert bei Abbildungen (@dhbw_logo), Tabellen (@beispiel_tabelle) und Kapiteln.
+Fußnoten sind besonders praktisch für Verweise auf andere Abschnitte der Arbeit. #footnote[Siehe Abschnitt @motivation] Mit dem \@-Symbol lassen sich Labels referenzieren. Das funktioniert bei Abbildungen (@dhbw_logo), Tabellen (@beispiel_tabelle) und Kapiteln.

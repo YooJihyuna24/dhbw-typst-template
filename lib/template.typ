@@ -1,113 +1,148 @@
 // lib/template.typ
-#import "frontmatter.typ": titlepage, declaration, blocking-notice
+#import "titlepage.typ": titlepage
+#import "../etc/declaration.typ": declaration
 
-// --- HILFSFUNKTIONEN ---
 #let epigraph(quote, author) = align(center)[
-  #block(width: 80%)[
-    _ #quote _ \
-    #align(right)[--- #author]
-  ]
+  #block(width: 80%)[_ #quote _ \ #align(right)[--- #author]]
 ]
 
-// --- HAUPT-TEMPLATE ---
-#let dhbw-paper(
-  title: "",
-  footer-title: "",
-  thesis-type: "",
-  degree: "",
-  submission-date: none,
-  course-of-studies: "",
-  course: "",
-  author: "",
-  company: (:),
-  university-advisor: "",
-  declaration-location: "",
-  declaration-date: none,
-  has-blocking-notice: true,
-  is-seminar-paper: false,
-  body
+#let ai_table(..rows) = table(
+  columns: (1.5fr, 2.5fr, 2.5fr, 2fr),
+  fill: (col, row) => if row == 0 { luma(171) } else if calc.rem(row, 2) == 0 { luma(219) } else { luma(241) },
+  stroke: white,
+  inset: 10pt,
+  align: horizon,
+  // Offizielle Spaltenüberschriften nach Anforderung
+  [*Verwendete KI-Tools*], 
+  [*Beschreibung der Nutzung*], 
+  [*Prompt(s) / Eingabe(n)*], 
+  [*Anmerkung und Reflexion*],
+  ..rows
+)
+
+#let dhbw_paper(
+  title: "", thesis_type: "", degree: "", course_of_studies: "", course: "", 
+  author: "", company: (:), university_advisor: "", faculty: "", submission_date: none,
+  declaration_location: "", declaration_date: none, has_blocking_notice: true, 
+  abstract_src: none, abbreviations_src: none, ai_usage_src: none, appendix_src: none,
+  bibliography_src: none, body
 ) = {
-
-  // --- 1. GLOBALE DOKUMENTENEINSTELLUNGEN ---
-  set document(title: title, author: author)
-  set text(font: ("Calibri", "Carlito", "Arial", "sans-serif"), size: 12pt, lang: "de")
-  set par(leading: 0.8em, justify: true)
   
-  show heading: set block(above: 1.5em, below: 1em)
-  show heading: set text(weight: "bold")
+  // --- 1. GLOBALE FORMATIERUNG ---
+  set document(title: title, author: author)
+  set text(font: ("Calibri", "Arial"), size: 12pt, lang: "de", hyphenate: true)
+  
+  // 1,5-zeilig (Anf. 2.1.6) und Absatzabstand 6pt (Anf. 2.1.5)
+  set par(leading: 0.65em, justify: true, spacing: 1.5em)
+  
+  // Blaue Links für Verzeichnisse
+  show link: set text(fill: blue)
 
-  set table(
-    fill: (col, row) => 
-      if row == 0 { luma(171) }
-      else if calc.rem(row, 2) == 0 { luma(219) }
-      else { luma(241) },
-    stroke: white
-  )
-
-  // --- 2. DECKBLATT ---
-  titlepage(
-    title: title,
-    thesis-type: thesis-type,
-    degree: degree,
-    course-of-studies: course-of-studies,
-    course: course,
-    author: author,
-    company: company,
-    university-advisor: university-advisor,
-    submission-date: submission-date,
-    has-blocking-notice: has-blocking-notice,
-    is-seminar-paper: is-seminar-paper
-  )
-
-  // --- 3. FRONTMATTER ---
-  let dhbw-footer(numbering-style) = context {
-    line(length: 100%, stroke: 0.5pt)
-    v(2mm)
-    grid(
-      columns: (1fr, auto, 1fr),
-      [], 
-      [#text(size: 10pt)[#footer-title]], 
-      align(right)[#text(size: 10pt)[#counter(page).display(numbering-style)]] 
-    )
+  // Überschriften-Größen (Anf. 2.3): 16pt / 14pt / 12pt
+  show heading.where(level: 1): set text(size: 16pt)
+  show heading.where(level: 2): set text(size: 14pt)
+  show heading.where(level: 3): set text(size: 12pt)
+  
+  // Abstände für Überschriften (Anf. 2.3)
+  show heading: set block(above: 24pt, below: 12pt)
+  show heading.where(level: 1): it => {
+    pagebreak(weak: true)
+    v(1.5em)
+    it
+    v(1em)
   }
 
+  // Inhaltsverzeichnis Design
+  show outline.entry: it => {
+    if it.level == 1 {
+      v(1em, weak: false)
+      pad(left: 1em, strong(text(size: 14pt, it))) 
+    } else {
+      v(0.5em, weak: false)
+      text(size: 12pt, it)
+    }
+  }
+
+  // Beschriftungen (Anf. 2.5)
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.where(kind: image): set figure.caption(position: bottom)
+  set figure.caption(separator: ": ")
+  show figure.caption: set text(size: 11pt)
+
+  // --- 2. FRONTMATTER (Römisch) ---
+  // Ränder & Abstände nach Anf. 2.1.1, 2.1.2, 2.1.3
   set page(
-    margin: (left: 3.5cm, right: 2.5cm, top: 2.5cm, bottom: 3cm),
-    footer: dhbw-footer("I")
+    margin: (top: 2.5cm, bottom: 2.0cm, left: 3.5cm, right: 2.5cm),
+    numbering: "I",
+    footer-descent: 1.25cm,
+    footer: context { 
+      set text(size: 9pt)
+      stack(
+        line(length: 100%, stroke: 0.5pt),
+        v(0.5em),
+        align(right)[#counter(page).display()]
+      )
+    }
   )
   
-  counter(page).update(1)
-
-  declaration(
-    title: title,
-    thesis-type: thesis-type,
-    author: author,
-    declaration-location: declaration-location,
-    declaration-date: declaration-date
+  titlepage(
+    title: title, thesis_type: thesis_type, degree: degree, course_of_studies: course_of_studies,
+    course: course, author: author, company: company, university_advisor: university_advisor,
+    faculty: faculty, submission_date: submission_date, has_blocking_notice: has_blocking_notice
   )
   pagebreak()
+  
+  counter(page).update(1) // Erklärung = II
+  declaration(author: author, title: title, declaration_location: declaration_location, declaration_date: declaration_date)
+  pagebreak()
 
-  if has-blocking-notice {
-    blocking-notice()
+  if abstract_src != none { abstract_src; pagebreak() }
+
+  heading(level: 1, numbering: none, outlined: false)[Inhaltsverzeichnis]
+  outline(title: none, indent: 2em, depth: 3) 
+  pagebreak()
+
+  if abbreviations_src != none {
+    heading(level: 1, numbering: none, outlined: true)[Abkürzungsverzeichnis]
+    abbreviations_src
     pagebreak()
   }
 
-  // --- 4. VERZEICHNISSE ---
-  heading(level: 1, outlined: false)[Inhaltsverzeichnis]
-  outline(title: none, indent: auto)
-  pagebreak()
+  [#metadata(none) <front_end>] 
 
-  heading(level: 1, outlined: false)[Abbildungsverzeichnis]
-  outline(title: none, target: figure.where(kind: image))
-  pagebreak()
-
-  heading(level: 1, outlined: false)[Tabellenverzeichnis]
-  outline(title: none, target: figure.where(kind: table))
-  pagebreak()
-
-  // --- 5. HAUPTTEIL ---
-  set page(footer: dhbw-footer("1"))
+  // --- 3. HAUPTTEIL & NACHSPANN (Arabisch) (Anf. 2.1.4) ---
+  set page(numbering: "1")
   counter(page).update(1)
-
+  set heading(numbering: "1.1")
+  
   body
+  pagebreak()
+
+  // --- BACKMATTER (Römisch fortgesetzt) ---
+  set heading(numbering: none)
+  set page(numbering: "I")
+  
+  context {
+    let front_pages = query(<front_end>)
+    if front_pages.len() > 0 {
+      let last_roman_val = counter(page).at(front_pages.first().location()).first()
+      counter(page).update(last_roman_val + 1)
+    }
+  }
+
+  // Verzeichnisse nach dem Hauptteil
+  if bibliography_src != none {
+    bibliography_src
+    pagebreak()
+  }
+
+  if appendix_src != none {
+    appendix_src
+    pagebreak()
+  }
+
+  if ai_usage_src != none {
+    heading(level: 1, outlined: true)[Hilfsmittelverzeichnis]
+    ai_usage_src
+  }
 }

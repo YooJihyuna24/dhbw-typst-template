@@ -23,7 +23,7 @@
 #let dhbw_paper(
   title: "", thesis_type: "", degree: "", course_of_studies: "", course: "", 
   author: "", company: (:), university_advisor: "", faculty: "", submission_date: none,
-  declaration_location: "", declaration_date: none, has_blocking_notice: true, 
+  declaration_location: "", declaration_date: none, use_ai: false, has_blocking_notice: true, 
   abstract_src: none, abbreviations_src: none, ai_usage_src: none, appendix_src: none,
   bibliography_src: none, body
 ) = {
@@ -93,7 +93,13 @@
   pagebreak()
   
   counter(page).update(1) // Erklärung = II
-  declaration(author: author, title: title, declaration_location: declaration_location, declaration_date: declaration_date)
+  declaration(
+    author: author, 
+    title: title, 
+    declaration_location: declaration_location, 
+    declaration_date: declaration_date,
+    use_ai: use_ai
+  )
   pagebreak()
 
   if abstract_src != none { abstract_src; pagebreak() }

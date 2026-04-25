@@ -18,6 +18,7 @@
   university_advisor: "<Wissenschaftliche/r BetreuerIn>",
   declaration_location: "<Ort>",
   declaration_date: "<Datum>",
+  use_ai: true, // Stelle auf 'false', wenn du keine KI genutzt hast
   has_blocking_notice: true,
   
   abstract_src: include "etc/abstract.typ",

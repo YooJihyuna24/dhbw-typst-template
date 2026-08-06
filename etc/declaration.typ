@@ -1,41 +1,85 @@
 // etc/declaration.typ
+// ═══════════════════════════════════════════════════════════════════════════
+// Ehrenwörtliche Erklärung (H 3.3)
+//
+// WICHTIG: "Die in der Arbeit verwendete Erklärung muss mit dieser Vorlage
+// genau übereinstimmen." (H 3.3) Der Wortlaut unten ist wörtlich aus Anhang 6
+// der Hinweise übernommen (Fassung für die Jahrgänge 2024 ff nach DHBW StuPrO
+// 2024, Stand 16.07.2025) und darf NICHT verändert werden.
+//
+// Einzige Abweichung: In Anhang 6 steht der Tippfehler "veröffentlich", hier
+// korrekt "veröffentlicht".
+//
+// Die Erklärung steht nach dem Titelblatt (ggf. nach dem Sperrvermerk) und vor
+// dem Inhaltsverzeichnis, wird nicht im Inhaltsverzeichnis aufgeführt und nicht
+// in die Seitennummerierung aufgenommen (H 3.3).
+// ═══════════════════════════════════════════════════════════════════════════
 
-#let declaration(author: "", title: "", declaration_location: "", declaration_date: none, use_ai: false) = {
+#let _fmt_date(d) = if type(d) == datetime {
+  d.display("[day].[month].[year]")
+} else { d }
+
+#let declaration(
+  declaration_location: "",
+  declaration_date: none,
+  signature: none,
+  ai_declaration: false,
+) = {
   align(center)[
-    #heading(level: 1, outlined: false)[Selbstständigkeitserklärung]
+    #heading(level: 1, numbering: none, outlined: false)[Ehrenwörtliche Erklärung]
   ]
-  
-  v(1cm)
-  
-  [Mit dem Hochladen versichere ich, dass ich mir bewusst bin, dass schriftliche Arbeiten, die ich im Rahmen meines Studiums als Studien- oder Prüfungsleistungen einreiche, eigenständig verfasst werden müssen. Das bedeutet u.a., dass ich für das Endprodukt selbst als Autor*in vollumfänglich verantwortlich bin. Dabei ist die Nutzung von Quellen, Zitaten sowie sonstiger Hilfsmittel nach den geltenden Regeln wissenschaftlicher Dokumentation im Sinne des Prinzips der Transparenz eindeutig und nachvollziehbar kenntlich zu machen. Es ist untersagt, fremde Texte als eigene auszugeben#if use_ai [ (siehe auch untenstehenden Hinweis zu KI-gestützten Werkzeugen).] else [.]]
-  
-  v(1em)
-  
-  [Ich versichere zudem, dass meine Arbeit weder vollständig noch in Teilen bereits in einem anderen Prüfungsverfahren verwendet oder veröffentlicht wurde. Wenn gebundene Fassungen verlangt werden, entspricht das in elektronischer Form eingereichte Exemplar inhaltlich vollständig den abgegebenen gebundenen Fassungen. Ein Verstoß gegen diese grundlegenden Prinzipien wissenschaftlichen Arbeitens wird als Täuschungsversuch gewertet. Die Konsequenzen sind in der aktuellen Studien- und Prüfungsordnung hinterlegt.]
-  
-  v(1em)
-  
-  if use_ai {
-    [Ich bin mir bewusst, dass die Nutzung generativer KI-Werkzeuge keine Gewährleistung für die Qualität der erzeugten Inhalte bietet. Für etwaige fehlerhafte Inhalte sowie für Verstöße gegen Datenschutzrecht, Urheberrecht oder gegen die Regeln wissenschaftlichen Arbeitens (z. B. in Form von Plagiaten, erfundenen Quellen, falschen Belegen usw.) trage ich die volle Verantwortung. Ich versichere zudem, dass im Falle der Nutzung von KI-gestützten Werkzeugen:]
-    
+
+  v(1.5cm)
+
+  [
+    Ich versichere hiermit, dass ich die vorliegende Arbeit selbstständig
+    verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel
+    verwendet habe und diese Arbeit bei keiner anderen Prüfung mit gleichem
+    oder vergleichbarem Inhalt vorgelegt habe und diese bislang nicht
+    veröffentlicht wurde.
+  ]
+
+  // ── Optionaler Zusatz zur Nutzung KI-gestützter Werkzeuge ────────────────
+  // Standardmäßig ausgeschaltet, damit die Erklärung exakt dem Wortlaut aus
+  // Anhang 6 entspricht. Die Dokumentation der KI-Nutzung erfolgt im
+  // Hilfsmittelverzeichnis (H 3.13). Nur einschalten, wenn die Betreuung
+  // diesen Zusatz ausdrücklich verlangt (Parameter `ai_declaration: true`).
+  if ai_declaration {
+    v(1em)
     [
-      - diese ausschließlich als unterstützende Hilfsmittel eingesetzt wurden und mein eigener gestalterischer Beitrag den wesentlichen Anteil an der Arbeit darstellt und
-      - ich die eingesetzten Werkzeuge, deren jeweilige Zwecke sowie den Umfang der Nutzung transparent dargelegt habe. Im Fall der Verwendung generativer KI habe ich der Arbeit einen Anhang beigefügt (Tabelle), in dem ich den Einsatz der entsprechenden Werkzeuge kritisch reflektiert und dokumentiert habe.
+      Ich bin mir bewusst, dass die Nutzung generativer KI-Werkzeuge keine
+      Gewährleistung für die Qualität der erzeugten Inhalte bietet. Für etwaige
+      fehlerhafte Inhalte sowie für Verstöße gegen Datenschutzrecht,
+      Urheberrecht oder gegen die Regeln wissenschaftlichen Arbeitens (z. B. in
+      Form von Plagiaten, erfundenen Quellen, falschen Belegen usw.) trage ich
+      die volle Verantwortung. Ich versichere zudem, dass KI-gestützte Werkzeuge
+      ausschließlich als unterstützende Hilfsmittel eingesetzt wurden, dass mein
+      eigener gestalterischer Beitrag den wesentlichen Anteil an der Arbeit
+      darstellt und dass ich die eingesetzten Werkzeuge, deren Zwecke sowie den
+      Umfang der Nutzung im Hilfsmittelverzeichnis transparent dargelegt und
+      kritisch reflektiert habe.
     ]
-  } else {
-    [Hiermit erkläre ich, dass ich die vorliegende Arbeit eigenständig und ohne die beabsichtigte Verwendung generativer KI-gestützter Werkzeuge erstellt habe.]
   }
 
-  v(2cm)
-  
+  v(3cm)
+
+  // Ort, Datum und Unterschrift im Original (H 3.3). Bei elektronischer Abgabe
+  // wird die PDF-Fassung mit einer eingescannten eigenhändigen Unterschrift
+  // versehen → Parameter `signature` in main.typ setzen.
   grid(
-    columns: (auto, 1fr, 6cm),
-    [#declaration_location, den #if type(declaration_date) == datetime { declaration_date.display("[day]. [month repr:long] [year]") } else { declaration_date }],
+    columns: (auto, 1fr, 7cm),
+    align: (left + bottom, center, center + bottom),
+    [#declaration_location, #_fmt_date(declaration_date)],
     [],
     [
+      #if signature != none {
+        image(signature, height: 1.6cm)
+      } else {
+        v(1.6cm)
+      }
       #line(length: 100%, stroke: 0.5pt)
       #v(0.2em)
-      #author
-    ]
+      #text(size: 10pt)[(Unterschrift)]
+    ],
   )
 }

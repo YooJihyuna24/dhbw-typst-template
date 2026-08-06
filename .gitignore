@@ -1,1 +1,63 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# .gitignore für die DHBW-Typst-Vorlage
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── Kompilate ──────────────────────────────────────────────────────────────
+# Das PDF entsteht bei jedem Kompilieren neu und gehört nicht in die
+# Versionsverwaltung. Deine Abgabefassung kannst du bei Bedarf trotzdem
+# bewusst aufnehmen:
+#   git add -f WWI24B_Nachname_Vorname_PA2.pdf
 *.pdf
+!img/**/*.pdf
+
+# Vorschau-Renderings (typst compile main.typ "vorschau/p{n}.png")
+vorschau/
+preview/
+*_preview.png
+*_vorschau.png
+
+# ── Persönliche Daten ──────────────────────────────────────────────────────
+# Die eingescannte Unterschrift gehört in KEIN öffentliches Repository.
+img/unterschrift*
+img/signature*
+
+# ── Beigaben ───────────────────────────────────────────────────────────────
+# Die Beigaben-ZIP wird separat in Moodle abgegeben und ist meist groß.
+beigaben/
+*.zip
+
+# ── Betriebssystem ─────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ── Editoren ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
+
+# ── Reste einer früheren LaTeX-Fassung ─────────────────────────────────────
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# ── Office-Temporärdateien ─────────────────────────────────────────────────
+~$*.docx
+~$*.xlsx
+~$*.pptx

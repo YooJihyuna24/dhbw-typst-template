@@ -1,48 +1,32 @@
 // chapters/01_einleitung.typ
-#import "../lib/template.typ": epigraph
+// ═══════════════════════════════════════════════════════════════════════════
+// Einleitung (H 3.8.1)
+// Darzulegen sind: organisatorisches/thematisches Umfeld, Motivation, Ziel der
+// Arbeit, Abgrenzung (welche Teilaspekte werden warum nicht behandelt) und der
+// Aufbau der Arbeit.
+//
+// Das Gutachten bewertet unter Punkt 1 die "klar und eindeutig formulierte
+// Problemstellung und Zielsetzung" — sie gehört sichtbar in dieses Kapitel.
+// ═══════════════════════════════════════════════════════════════════════════
 
-= Einleitung
+= Einleitung <sec-einleitung>
 
-#epigraph[Des Menschen größtes Verdienst bleibt wohl, wenn er die Umstände soviel als möglich bestimmt und sich so wenig als möglich von ihnen bestimmen läßt.][Johann Wolfgang von Goethe #footnote[Vgl. @Freund2014[S. 10]]]
+Kurzer Einstieg: Worum geht es, und warum ist das Thema für das
+Partnerunternehmen und die Fachdisziplin relevant?
 
-Ein zum Thema passendes Zitat ist fast immer eine gute Einleitung für die Arbeit. BPMN ist eine Modellierungssprache. #footnote[Vgl. @Freund2014[S. 1]] Bei der ersten Verwendung von Abkürzungen... 
-"Das ist ein direktes Zitat aus dem Internet". #footnote[@OMG2018[S. 3]]
-Es gibt viele schlechte Quellen. #footnote[Vgl. @schlechteQuelle2[S. 1-3]]
+== Ausgangssituation und Problemstellung <sec-problem>
 
-== Motivation <motivation>
-Abbildungen und Tabellen sind natürlich auch möglich.
+Organisatorisches und thematisches Umfeld der Arbeit sowie die Motivation.
+Welches konkrete Problem besteht, wen betrifft es, und woran ist es belegbar?
 
-#figure(
-  image("../img/DHBW_logo.png", width: 40%),
-  caption: [Das Logo der DHBW]
-) <dhbw_logo> // Das ist das Äquivalent zu \label{}
+== Zielsetzung und Abgrenzung <sec-ziel>
 
-Mit einem Label in einer Abbildung oder Tabelle kann man darauf referenzieren, wie man an der @musterfirma_logo sehen kann. // @ referenziert automatisch Labels!
+Was soll erreicht werden? Formuliere das Ziel möglichst prüfbar, gegebenenfalls
+mit Forschungsfragen. Anschließend die Abgrenzung: Welche Teilaspekte werden aus
+welchen Gründen nicht behandelt?
 
-#figure(
-  image("../img/company_logo.png", width: 30%),
-  caption: [Das Logo der Musterfirma]
-) <musterfirma_logo>
+== Aufbau der Arbeit <sec-aufbau>
 
-Die Breite einer Grafik oder Tabelle lässt sich über Prozente steuern. Bei Tabellen werden unsere DHBW-Farben jetzt vollautomatisch angewendet!
-
-#figure(
-  table(
-    columns: 2,
-    [*Eigenschaft*], [*Wert*], // Der Header wird automatisch dunkelgrau
-    [Größe], [20 cm],
-    [Gewicht], [1 kg],
-    [Haarfarbe], [braun]
-  ),
-  caption: [Eine Tabelle ohne Quellenangabe]
-) <beispiel_tabelle>
-
-Aufzählungen macht man ganz einfach:
-- Punkt 1
-- Punkt 2
-
-Nummerierte Aufzählungen:
-+ Punkt 1
-+ Punkt 2
-
-Fußnoten sind besonders praktisch für Verweise auf andere Abschnitte der Arbeit. #footnote[Siehe Abschnitt @motivation] Mit dem \@-Symbol lassen sich Labels referenzieren. Das funktioniert bei Abbildungen (@dhbw_logo), Tabellen (@beispiel_tabelle) und Kapiteln.
+Roter Faden in wenigen Sätzen: Kapitel 2 legt die Grundlagen, Kapitel 3
+analysiert den Ist-Zustand, Kapitel 4 entwickelt das Konzept, Kapitel 5
+beschreibt die Umsetzung, Kapitel 6 fasst zusammen und gibt einen Ausblick.

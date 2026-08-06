@@ -1,45 +1,69 @@
 // etc/ai_usage.typ
-#import "../lib/template.typ": ai_table
+// ═══════════════════════════════════════════════════════════════════════════
+// Hilfsmittelverzeichnis (H 3.13)
+//
+// "… bei der Erstellung eingesetzte KI-Tools müssen in einer Liste verwendeter
+// Hilfsmittel im Anhang der Arbeit angegeben werden." (H 3.13)
+// Grundlage ist die Erklärung nach H 3.3, in der die Nutzung ausschließlich der
+// angegebenen Quellen und Hilfsmittel versichert wird. Details regelt das
+// Dokument "Hinweise zum Einsatz von KI-basierten Werkzeugen bei der
+// Anfertigung von wissenschaftlichen Arbeiten".
+//
+// Vorgehen: Nur die Blöcke ausfüllen, die tatsächlich zutreffen — nicht
+// benötigte Blöcke löschen. Pro Nutzung eine Zeile mit vier Einträgen:
+//
+//   #hilfsmittel-block("Textgenerierung",
+//     [Name des Werkzeugs und Version],
+//     [Wofür wurde es eingesetzt?],
+//     [Beispielhafter Prompt bzw. Art der Eingabe],
+//     [Wie wurde das Ergebnis geprüft und verantwortet?],
+//   )
+//
+// Keine KI eingesetzt? Dann alle Blöcke löschen und den einleitenden Satz
+// entsprechend anpassen ("Bei der Erstellung dieser Arbeit wurden keine
+// KI-basierten Werkzeuge eingesetzt.").
+// ═══════════════════════════════════════════════════════════════════════════
 
-Anbei die detaillierte Darstellung der KI-Nutzung im Rahmen dieser Arbeit.
+#import "../lib/components.typ": hilfsmittel-block
 
-#heading(level: 2, outlined: false)[Ideenfindung]
-#ai_table(
-  [], [], [], [] // Pro Nutzung eine Zeile füllen
+Die folgende Übersicht dokumentiert die bei der Erstellung dieser Arbeit
+eingesetzten KI-basierten Werkzeuge, den jeweiligen Zweck, den Umfang der
+Nutzung sowie die kritische Reflexion der Ergebnisse.
+
+#hilfsmittel-block("Ideenfindung",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Literaturrecherche]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Literaturrecherche",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Textgenerierung]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Textgenerierung",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Strukturierung]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Strukturierung",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Korrektur]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Korrektur und Übersetzung",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Verständnis]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Verständnis von Fachinhalten",
+  [], [], [], [],
 )
 
-Die folgenden Sektionen sind optional für qualitative/quantitative Studien:
-#heading(level: 2, outlined: false)[Methodik]
-#ai_table(
-  [], [], [], []
+// Nur bei empirischen Arbeiten relevant — sonst löschen:
+#hilfsmittel-block("Methodik",
+  [], [], [], [],
 )
 
-#heading(level: 2, outlined: false)[Datenerhebung und -auswertung]
-#ai_table(
-  [], [], [], []
+#hilfsmittel-block("Datenerhebung und -auswertung",
+  [], [], [], [],
 )
+
+Weitere, nicht KI-basierte Hilfsmittel: Literaturverwaltung (z. B. Zotero oder
+Citavi) zur Verwaltung der Quellen und Erzeugung der Kurzbelege sowie das
+Satzsystem Typst für die Formatierung. Beide haben keinen Einfluss auf die
+inhaltlichen Aussagen der Arbeit.

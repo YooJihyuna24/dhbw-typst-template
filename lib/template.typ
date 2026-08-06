@@ -106,17 +106,26 @@
   // H 2.1.6: Blocksatz mit Silbentrennung, Zeilenabstand 1,5
   // H 2.1.5: Abstand vor Absätzen 6 Punkte
   //
-  // Umrechnung von Word auf Typst: Word setzt "1,5-zeilig" = 1,5 × Einzel-
-  // zeilenhöhe; bei Arial 12 pt sind das 1,5 × 13,8 pt ≈ 20,7 pt Zeilenabstand.
-  // Typst rechnet `leading` + Versalhöhe (Standard `top-edge: "cap-height"`,
-  // bei Arial/Times ≈ 0,67–0,69em ≈ 8,1 pt). Damit gilt
-  //     leading = 20,7 pt − 8,1 pt ≈ 12,6 pt ≈ 1,05em
-  // → gemessener Zeilenabstand ≈ 20,9 pt, also exakt 1,5-zeilig.
+  // Word und Typst messen unterschiedlich, deshalb wird der Wert hier ausgerechnet
+  // statt geschätzt:
+  //   Word:  Basislinienabstand = 1,5 × Einzelzeilenhöhe.
+  //          Die Einzelzeilenhöhe ist schriftabhängig — Arial und Times New Roman
+  //          1,15 × Schriftgrad, Calibri/Carlito 1,22 × Schriftgrad.
+  //   Typst: Basislinienabstand = `leading` + Versalhöhe (Standardeinstellung
+  //          `top-edge: "cap-height"`) — Arial 0,688em, Times New Roman 0,662em,
+  //          Calibri/Carlito 0,644em.
+  //   ⇒ leading = 1,5 × Einzelzeilenhöhe − Versalhöhe
+  //
+  // Beim Wechsel der Schriftart die beiden Konstanten mit anpassen; die Formel
+  // liefert dann wieder einen exakten Basislinienabstand (bei Arial 12 pt genau
+  // 20,70 pt, nachgemessen im PDF).
+  let einzelzeile = 1.15         // Arial, Times New Roman · Calibri/Carlito: 1.22
+  let versalhoehe = 0.688em      // Arial · Times New Roman: 0.662em · Carlito: 0.644em
+  let zeilenabstand = 1.5 * einzelzeile * font_size - versalhoehe
   //
   // `spacing` ist in Typst der GESAMTE Abstand zwischen zwei Absätzen, nicht ein
   // Zuschlag. H 2.1.5 fordert einen "zusätzlichen 6-Punkte-Zeilenabstand der
   // ersten Zeile des neuen Absatzes" → spacing = leading + 6 pt.
-  let zeilenabstand = 1.05em
   set par(
     leading: zeilenabstand,
     spacing: zeilenabstand + 6pt,
